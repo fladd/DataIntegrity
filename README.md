@@ -13,7 +13,7 @@ A tool for creating a _Data Integrity Fingerprint (DIF)_ of folders and single f
 >>> 'fb2e150f4424c27596a9403add5fee4fe4789be6'
 ```
 
-If an optional argument `write_torrent=True` is given, a .torrent file will be written that can be used with any BitTorrent client to share the data.
+If an optional second argument `write_torrent` is set to `True`, a .torrent file will be written that can be used with any BitTorrent client to share the data.
 
 **Verify the data:**
 ```
@@ -24,4 +24,4 @@ If an optional argument `write_torrent=True` is given, a .torrent file will be w
 >>> True
 ```
 
-If a .torrent file is given as an optional third argument, each file in the data will be checked individually. In case the data cannot be verified, a list of corrupted files will be printed to the standard output.
+If a .torrent file is given as an optional third argument `torrent_file`, each file in the data will be checked individually. In case the data cannot be verified, a list of corrupted files will be printed to the standard output.
