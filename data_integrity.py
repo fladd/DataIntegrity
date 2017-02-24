@@ -83,7 +83,7 @@ class Torrent:
             self.tdict['info'].update(
                 {
                     'length': length,
-                    'md5sum': hashlib.md5sum.hexdigest()
+                    'md5sum': md5sum.hexdigest()
                 }
             )
 
@@ -215,7 +215,7 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
                     if piece != "":
                         yield piece
                 else:  # Yield pieces from a single file torrent
-                    self._current_file = info['name']
+                    self._current_file = self.info['name']
                     sfile = open(self._current_file.decode('UTF-8'), "rb")
                     while True:
                         piece = sfile.read(piece_length)
@@ -237,7 +237,7 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
                 for piece in self._pieces_generator():
                     #  compare piece hash with expected hash
                     piece_hash = hashlib.sha1(piece).digest()
-                    if (piece_hash != pieces.read(20)):
+                    if piece_hash != pieces.read(20):
                         self._corruption_failure()
                 # Ensure we've read all pieces 
                 if pieces.read():
@@ -246,3 +246,5 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
         tfv = TorrentFileVerifier(torrent_file)
         tfv.verify()
         return create_fingerprint(data) == data_integrity_fingerprint
+
+
