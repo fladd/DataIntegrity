@@ -195,6 +195,7 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
                 self.file = torrent_file
                 self.info = bencode.bdecode(open(self.file, 'rb').read())["info"]
                 self._current_file = ""
+                self._corrupted_files = []
 
             def _pieces_generator(self):
                 """Yield pieces from download file(s)."""
@@ -226,7 +227,9 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
             def _corruption_failure(self):
                 """Display error message."""
 
-                print("{0} seems to be corrupted!".format(self._current_file))
+                if self._current_file not in self._corrupted_files:
+                    print("{0} seems to be corrupted!".format(self._current_file))
+                    self._corrupted_files.append(self._current_file)
 
             def verify(self):
                 pieces = StringIO.StringIO(self.info['pieces'])
@@ -236,7 +239,6 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
                     piece_hash = hashlib.sha1(piece).digest()
                     if (piece_hash != pieces.read(20)):
                         self._corruption_failure()
-                        break
                 # Ensure we've read all pieces 
                 if pieces.read():
                     self._corruption_failure()
