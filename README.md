@@ -1,10 +1,10 @@
 # DataIntegrity
 
-A tool for creating a "Data Integrity Fingerprint" of folders and single files, that is compatible with the BitTorrent info hash.
+A tool for creating a _Data Integrity Fingerprint (DIF)_ of folders and single files, that is compatible with the BitTorrent info hash.
 
 ## Usage
 
-### Create a fingerprint (and optionally save a .torrent file)
+**Create a fingerprint:**
 ```
 >>> import data_integrity
 
@@ -13,9 +13,9 @@ A tool for creating a "Data Integrity Fingerprint" of folders and single files, 
 >>> 'fb2e150f4424c27596a9403add5fee4fe4789be6'
 ```
 
-If `write_torrent` is `True`, a .torrent file will be written that can be used with any BitTorrent client to share the data.
+If the optional argument `write_torrent` is `True`, a .torrent file will be written that can be used with any BitTorrent client to share the data.
 
-### Verify data
+**Verify the data:**
 ```
 >>> import data_integrity
 
