@@ -83,7 +83,7 @@ class Torrent:
             self.tdict['info'].update(
                 {
                     'length': length,
-                    'md5sum': hashlib.md5.hexdigest()
+                    'md5sum': hashlib.md5( ).hexdigest() # FIXME md5sum of what?
                 }
             )
 
@@ -246,3 +246,5 @@ def verify_data(data, data_integrity_fingerprint, torrent_file=None):
         tfv = TorrentFileVerifier(torrent_file)
         tfv.verify()
         return create_fingerprint(data) == data_integrity_fingerprint
+
+
