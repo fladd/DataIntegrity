@@ -83,7 +83,7 @@ class Torrent:
             self.tdict['info'].update(
                 {
                     'length': length,
-                    'md5sum': md5sum.hexdigest() # FIXME md5sum of what?
+                    'md5sum': md5sum.hexdigest()
                 }
             )
 
