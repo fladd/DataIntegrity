@@ -8,12 +8,12 @@ A tool for creating a _Data Integrity Fingerprint (DIF)_ of folders and single f
 ```
 >>> import data_integrity
 
->>> data_integrity.create_fingerprint("/path/to/my/data/", write_torrent=True)
+>>> data_integrity.create_fingerprint("/path/to/my/data/")
 
 >>> 'fb2e150f4424c27596a9403add5fee4fe4789be6'
 ```
 
-If the optional argument `write_torrent` is `True`, a .torrent file will be written that can be used with any BitTorrent client to share the data.
+If an optional argument `write_torrent=True` is given, a .torrent file will be written that can be used with any BitTorrent client to share the data.
 
 **Verify the data:**
 ```
